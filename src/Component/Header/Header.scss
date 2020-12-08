@@ -1,0 +1,28 @@
+@import "../../scss/_mixin.scss";
+
+header {
+    position: fixed;
+    background: #ef5350;
+    height: 50px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 11;
+    .main__container {
+        @extend %flexbox;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+    }
+    .logo {
+        @extend %flexbox;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100%;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
