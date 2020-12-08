@@ -1,0 +1,83 @@
+@import "../../scss/_mixin.scss";
+@import "../../scss/_variables.scss";
+@import "../../scss/_fonts.scss";
+
+.card {
+    flex: 0 0 25%;
+    width: 25%;
+    padding: 0 10px;
+    margin: 10px 0px;
+    &__container {
+        background: aliceblue;
+        padding: 10px;
+        @include border-radius(15px);
+        display: block;
+        text-decoration: none;
+        color: $black;
+    }
+
+    &__top {
+        margin-bottom: 10px;
+    }
+
+    &__name {
+        font-family: $bold_font-family_secondary;
+        font-weight: $bold_font-weight;
+        text-transform: capitalize;
+        font-size: 22px;
+    }
+    &__type {
+        display: flex;
+        flex-flow: column;
+        margin-top: 20px;
+
+        span {
+            padding: 5px;
+            font-family: $medium_font-family_secondary;
+            font-weight: $medium_font-weight;
+            text-transform: capitalize;
+            background: red;
+            text-align: center;
+            @include border-radius(16px);
+            font-style: 14px;
+            color: $white;
+            &:not(:last-child) {
+                margin-bottom: 8px;
+            }
+        }
+    }
+    &__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__number {
+        text-align: right;
+        font-family: $medium_font-family_secondary;
+        font-weight: $medium_font-weight;
+        em {
+            font-style: normal;
+        }
+    }
+
+    &__imgBox {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        &::after {
+            content: map-get($icons, pokeball);
+            font-family: $icon-font;
+            font-size: 120px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0px;
+            z-index: -1;
+            color: rgba($black, 0.2);
+        }
+        img {
+            width: 120px;
+            height: 120px;
+        }
+    }
+}

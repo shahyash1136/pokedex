@@ -1,136 +1,72 @@
 import React, { Component } from 'react';
 import './Dashboard.scss';
+import Pokemoncard from '../../Component/Pokemon-card/Pokemon-card';
+import Button from '../../Component/Button/Button';
+import axios from 'axios';
 
 class Dashboard extends Component {
+    constructor() {
+        super();
+        this.state = {
+            pokemons: null,
+            nextPage: null,
+            prevPage: null,
+        }
+    }
+
+    componentDidMount() {
+        axios.get(`https://pokeapi.co/api/v2/pokemon/`).then(response => {
+            this.setState({
+                pokemons: response.data.results,
+                nextPage: response.data.next,
+                prevPage: response.data.previous,
+            })
+        })
+    }
+
+    prevBtn = () => {
+        axios.get(this.state.prevPage).then(response => {
+            this.setState({
+                pokemons: response.data.results,
+                nextPage: response.data.next,
+                prevPage: response.data.previous,
+            })
+        })
+    }
+    nextBtn = () => {
+        axios.get(this.state.nextPage).then(response => {
+            this.setState({
+                pokemons: response.data.results,
+                nextPage: response.data.next,
+                prevPage: response.data.previous,
+            })
+        })
+    }
+
     render() {
+        let markup;
+        if (this.state.pokemons === null) {
+            markup = 'Loading Data'
+        } else {
+            markup = this.state.pokemons.map(pokemon => {
+                let pokemonUrl = pokemon.url;
+                let pokemonNum = pokemonUrl.split('/')[pokemonUrl.split('/').length - 2];
+                return <Pokemoncard key={pokemon.name} name={pokemon.name} number={pokemonNum} />
+            })
+        }
+
+        let prevBtnClass = this.state.prevPage === null ? 'btn disable' : 'btn';
+        let nextBtnClass = this.state.nextPage === null ? 'btn disable' : 'btn';
+
         return (
             <div className="main__container">
                 <div className="dashboard">
-                    <div className="card">
-                        <a href="#" className="card__container">
-                            <div className="card__top">
-                                <span className="card__number"><em>#</em>1</span>
-                            </div>
-                            <div className="card__bottom">
-                                <div className="card__left">
-                                    <span className="card__name">Bulbasaur</span>
-                                    <div className="card__type">
-                                        <span>grass</span>
-                                        <span>poison</span>
-                                    </div>
-                                </div>
-                                <div className="card__right">
-                                    <div className="card__imgBox">
-                                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg" alt="Name" />
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                    <div className="dashboard__btn">
+                        <Button btnValue={'Previous'} click={this.prevBtn} btnClass={prevBtnClass} />
+                        <Button btnValue={'Next'} click={this.nextBtn} btnClass={nextBtnClass} />
                     </div>
-                    <div className="card">
-                        <a href="#" className="card__container">
-                            <div className="card__top">
-                                <span className="card__number"><em>#</em>1</span>
-                            </div>
-                            <div className="card__bottom">
-                                <div className="card__left">
-                                    <span className="card__name">Bulbasaur</span>
-                                    <div className="card__type">
-                                        <span>grass</span>
-                                        <span>poison</span>
-                                    </div>
-                                </div>
-                                <div className="card__right">
-                                    <div className="card__imgBox">
-                                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg" alt="Name" />
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="card">
-                        <a href="#" className="card__container">
-                            <div className="card__top">
-                                <span className="card__number"><em>#</em>1</span>
-                            </div>
-                            <div className="card__bottom">
-                                <div className="card__left">
-                                    <span className="card__name">Bulbasaur</span>
-                                    <div className="card__type">
-                                        <span>grass</span>
-                                        <span>poison</span>
-                                    </div>
-                                </div>
-                                <div className="card__right">
-                                    <div className="card__imgBox">
-                                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg" alt="Name" />
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="card">
-                        <a href="#" className="card__container">
-                            <div className="card__top">
-                                <span className="card__number"><em>#</em>1</span>
-                            </div>
-                            <div className="card__bottom">
-                                <div className="card__left">
-                                    <span className="card__name">Bulbasaur</span>
-                                    <div className="card__type">
-                                        <span>grass</span>
-                                        <span>poison</span>
-                                    </div>
-                                </div>
-                                <div className="card__right">
-                                    <div className="card__imgBox">
-                                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg" alt="Name" />
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="card">
-                        <a href="#" className="card__container">
-                            <div className="card__top">
-                                <span className="card__number"><em>#</em>1</span>
-                            </div>
-                            <div className="card__bottom">
-                                <div className="card__left">
-                                    <span className="card__name">Bulbasaur</span>
-                                    <div className="card__type">
-                                        <span>grass</span>
-                                        <span>poison</span>
-                                    </div>
-                                </div>
-                                <div className="card__right">
-                                    <div className="card__imgBox">
-                                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/5.svg" alt="Name" />
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="card">
-                        <a href="#" className="card__container">
-                            <div className="card__top">
-                                <span className="card__number"><em>#</em>1</span>
-                            </div>
-                            <div className="card__bottom">
-                                <div className="card__left">
-                                    <span className="card__name">Bulbasaur</span>
-                                    <div className="card__type">
-                                        <span>grass</span>
-                                        <span>poison</span>
-                                    </div>
-                                </div>
-                                <div className="card__right">
-                                    <div className="card__imgBox">
-                                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg" alt="Name" />
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                    <div className="dashboard__cards">
+                        {markup}
                     </div>
                 </div>
             </div>
