@@ -1,0 +1,147 @@
+@import "../../scss/_mixin.scss";
+@import "../../scss/_variables.scss";
+@import "../../scss/_fonts.scss";
+
+.pokemon {
+    background: white;
+    margin-top: 20px;
+    border-radius: 8px;
+    padding: 15px;
+    em {
+        font-style: normal;
+    }
+    &__header {
+        @extend %flexbox;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__rank {
+        font-family: $medium_font-family_secondary;
+        font-weight: $medium_font-weight;
+        font-size: 25px;
+        em {
+            font-style: normal;
+        }
+    }
+    &__type {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        span {
+            padding: 5px 15px;
+            font-family: $medium_font-family_secondary;
+            font-weight: $medium_font-weight;
+            text-transform: capitalize;
+            background: red;
+            text-align: center;
+            @include border-radius(16px);
+            font-size: 14px;
+            color: $white;
+            min-width: 100px;
+            &:not(:last-child) {
+                margin-right: 15px;
+            }
+        }
+    }
+    &__body {
+        display: flex;
+        align-items: center;
+        justify-self: start;
+        &--left {
+            flex: 0 0 40%;
+            width: 40%;
+            padding: 0 10px;
+            text-align: center;
+        }
+        &--right {
+            flex: 0 0 60%;
+            width: 60%;
+        }
+    }
+    &__imgBox {
+        img {
+            width: 200px;
+            height: auto;
+        }
+    }
+    &__name {
+        text-transform: uppercase;
+        margin: 10px 0;
+    }
+    &__stats {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: center;
+        flex-wrap: wrap;
+        &Box {
+            flex: 0 0 16.66%;
+            width: 16.66%;
+            padding: 0 10px;
+            margin: 10px 0;
+            .svgBox {
+                .circle-bg {
+                    fill: none;
+                    stroke: rgba(0, 0, 0, 0.1);
+                    stroke-width: 1;
+                }
+
+                .circle {
+                    fill: none;
+                    stroke-width: 1;
+                    stroke-linecap: round;
+                    stroke: red;
+                    animation: progress 1s ease-in-out;
+                }
+
+                @keyframes progress {
+                    0% {
+                        stroke-dasharray: 0 100;
+                    }
+                }
+
+                .percentage {
+                    fill: #666;
+                    font-family: sans-serif;
+                    font-size: 0.5em;
+                    text-anchor: middle;
+                }
+            }
+        }
+    }
+
+    &__head {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    &__profile {
+        &Box {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        &Card {
+            display: flex;
+            align-items: center;
+            &:not(:last-child) {
+                margin-bottom: 15px;
+            }
+            .si-left {
+                margin-right: 8px;
+            }
+            .si-right {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                span {
+                    text-transform: capitalize;
+                    &:not(:last-child) {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
