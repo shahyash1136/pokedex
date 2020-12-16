@@ -80,6 +80,7 @@
             width: 16.66%;
             padding: 0 10px;
             margin: 10px 0;
+            text-transform: capitalize;
             .svgBox {
                 .circle-bg {
                     fill: none;
@@ -91,7 +92,7 @@
                     fill: none;
                     stroke-width: 1;
                     stroke-linecap: round;
-                    stroke: red;
+                    //stroke: red;
                     animation: progress 1s ease-in-out;
                 }
 
@@ -122,21 +123,63 @@
             align-items: flex-start;
             justify-content: space-between;
         }
+        &--left,
+        &--right {
+            flex: 0 0 50%;
+            width: 50%;
+        }
         &Card {
             display: flex;
             align-items: center;
+            justify-content: center;
             &:not(:last-child) {
                 margin-bottom: 15px;
             }
-            .si-left {
+            .left {
                 margin-right: 8px;
+                flex: 0 0 50%;
+                width: 50%;
+                padding-right: 15px;
+                padding-left: 15px;
+                text-align: right;
+                font-family: $regular_font-family_secondary;
+                font-weight: $regular_font-weight;
+                text-transform: capitalize;
             }
-            .si-right {
+            .right {
                 display: flex;
+                flex: 0 0 50%;
+                width: 50%;
                 align-items: center;
                 justify-content: flex-start;
+                padding-right: 15px;
+                padding-left: 15px;
+                font-family: $bold_font-family_secondary;
+                font-weight: $bold_font-weight;
                 span {
                     text-transform: capitalize;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    em {
+                        margin-left: 2px;
+                        text-transform: lowercase;
+                        &.icon {
+                            margin-left: 0px;
+                            margin-right: 5px;
+                            width: 25px;
+                            height: 25px;
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            &.female {
+                                background-image: url("../../assets/images/female.png");
+                            }
+                            &.male {
+                                background-image: url("../../assets/images/male.png");
+                            }
+                        }
+                    }
                     &:not(:last-child) {
                         margin-right: 10px;
                     }

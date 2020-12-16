@@ -1,9 +1,10 @@
 import React from 'react';
 import './Pokemon-card.scss';
+import { NavLink } from "react-router-dom";
 const pokemoncard = (props) => {
     return (
         <div className="card">
-            <a href="#" className="card__container">
+            <NavLink to={`/pokemon/${props.number}`} className="card__container">
                 <div className="card__top">
                     <div className="card__imgBox">
                         <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${props.number}.svg`} alt={props.name} />
@@ -14,7 +15,7 @@ const pokemoncard = (props) => {
                     <span className="card__number"><em>#</em>{props.number}</span>
 
                 </div>
-            </a>
+            </NavLink>
         </div>
     )
 }
